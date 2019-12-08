@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Pawel Krupa (@paulfantom)
+  description: Deploy rpi-exporter
+  role_name: rpi_exporter
+  license: MIT
+  company: none
+  min_ansible_version: 2.7
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+  galaxy_tags:
+    - monitoring
+    - raspberry
+    - exporter
+
+dependencies: []
