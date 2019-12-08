@@ -1,0 +1,32 @@
+---
+- import_tasks: preflight.yml
+  tags:
+    - rpi_exporter_install
+    - rpi_exporter_configure
+    - rpi_exporter_run
+
+- import_tasks: install.yml
+  become: true
+  when: (not __rpi_exporter_is_installed.stat.exists) or (__rpi_exporter_current_version_output.stderr_lines[0].split(" ")[2] != rpi_exporter_version)
+  tags:
+    - rpi_exporter_install
+
+- name: Copy the rpi_exporter systemd service file
+  become: true
+  template:
+    src: rpi_exporter.service.j2
+    dest: /etc/systemd/system/rpi_exporter.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart rpi_exporter
+
+- name: Ensure rpi_exporter is enabled on boot
+  become: true
+  systemd:
+    daemon_reload: true
+    name: rpi_exporter
+    enabled: true
+    state: started
+  tags:
+    - rpi_exporter_run

@@ -1,0 +1,7 @@
+---
+- name: restart rpi_exporter
+  become: true
+  systemd:
+    daemon_reload: true
+    name: rpi_exporter
+    state: restarted
