@@ -21,12 +21,6 @@
     that:
       - "':' in rpi_exporter_web_listen_address"
 
-- name: Assert collectors are not both disabled and enabled at the same time
-  assert:
-    that:
-      - "item not in rpi_exporter_enabled_collectors"
-  with_items: "{{ rpi_exporter_disabled_collectors }}"
-
 - name: Check if rpi_exporter is installed
   stat:
     path: "/usr/local/bin/rpi_exporter"
