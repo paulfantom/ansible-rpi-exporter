@@ -1,0 +1,8 @@
+---
+- name: Run role
+  hosts: all
+  any_errors_fatal: true
+  roles:
+    - ansible-rpi-exporter
+  vars:
+    rpi_exporter_version: latest
