@@ -7,7 +7,7 @@
 
 ## Description
 
-Deploy [rpi-exporter](https://github.com/lukasmalkmus/rpi-exporter) using ansible.
+Deploy [rpi-exporter](https://github.com/lukasmalkmus/rpi_exporter) using ansible.
 
 ## Requirements
 
