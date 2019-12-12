@@ -1,7 +1,8 @@
 {{ ansible_managed | comment }}
 
 [Unit]
-Description=Prometheus rpi_exporter
+Description=Prometheus exporter for RPi temperature metrics
+Documentation=https://github.com/lukasmalkmus/rpi_exporter
 After=network-online.target
 StartLimitInterval=0
 
@@ -14,6 +15,8 @@ ExecStart=/usr/local/bin/rpi_exporter --web.listen-address={{ rpi_exporter_web_l
 SyslogIdentifier=rpi_exporter
 Restart=always
 RestartSec=1
+TimeoutStopSec=20s
+SendSIGKILL=no
 
 PrivateTmp=yes
 {% for m in ansible_mounts if m.mount == '/home' %}
